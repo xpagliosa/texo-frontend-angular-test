@@ -1,0 +1,77 @@
+<div class="card-item w-100 h-100">
+  <span class="card-title">List years with multiple winners</span>
+
+  <table class="table table-bordered table-striped table-hover mt-3">
+    <thead class="table-secondary">
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Year</th>
+        <th scope="col">Title</th>
+        <th scope="col">Winner?</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>1986</td>
+        <td>2</td>
+        <td>1986</td>
+        <td>2</td>
+      </tr>
+      <tr>
+        <td>1990</td>
+        <td>2</td>
+        <td>1986</td>
+        <td>2</td>
+      </tr>
+    </tbody>
+    <tfoot class="table-secondary">
+      <tr>
+        <td colspan="4" class="py-0">
+          <div class="d-flex align-items-center justify-content-center">
+            <div
+              class="pagination-item"
+              [class.disabled]="page === 1"
+              (click)="page !== 1 ? gotoPage(1) : null"
+            >
+              <i class="fa-solid fa-backward-step"></i>
+            </div>
+            <div
+              class="pagination-item"
+              [class.disabled]="page === 1"
+              (click)="page !== 1 ? gotoPage(page - 1) : null"
+            >
+              <i class="fa-solid fa-play rotate-180"></i>
+            </div>
+
+            <ng-container
+              *ngFor="let pageNumber of pages"
+            >
+              <div
+                class="pagination-item"
+                [class.active]="pageNumber === page"
+                (click)="pageNumber !== page ? gotoPage(pageNumber) : null"
+              >
+                {{ pageNumber }}
+              </div>
+            </ng-container>
+
+            <div
+              class="pagination-item"
+              [class.disabled]="page === totalPages"
+              (click)="page !== totalPages ? gotoPage(page + 1) : null"
+            >
+              <i class="fa-solid fa-play"></i>
+            </div>
+            <div
+              class="pagination-item"
+              [class.disabled]="page === totalPages"
+              (click)="page !== totalPages ? gotoPage(totalPages) : null"
+            >
+              <i class="fa-solid fa-forward-step"></i>
+            </div>
+          </div>
+        </td>
+      </tr>
+    </tfoot>
+  </table>
+</div>

@@ -1,0 +1,8 @@
+<div
+  class="route-item"
+  *ngFor="let item of routes"
+  [routerLink]="item.route"
+  routerLinkActive="active"
+>
+  {{ item.title }}
+</div>
