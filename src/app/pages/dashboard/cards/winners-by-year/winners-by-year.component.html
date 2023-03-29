@@ -1,0 +1,65 @@
+<div class="card-item h-100">
+  <span class="card-title">List movie winners by year</span>
+
+  <div class="d-flex align-items-center mt-4">
+    <div class="input-group input-group-sm">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by year"
+        aria-label="Search by year"
+        [(ngModel)]="year"
+        (keydown.enter)="checkIsValidYear()"
+        (keydown)="onlyNumbers($event)"
+        [class.border-danger]="yearError"
+      >
+      <ng-container *ngIf="year.length">
+        <button class="btn btn-secondary" type="button" (click)="clearYearFilter()">
+          <i class="fa-solid fa-xmark"></i>
+        </button>
+      </ng-container>
+
+      <button class="btn btn-sm btn-primary" type="button" (click)="checkIsValidYear()">
+        <i class="fa-solid fa-magnifying-glass"></i>
+      </button>
+    </div>
+  </div>
+
+  <table class="table table-bordered table-striped table-hover mt-3">
+    <thead class="table-secondary">
+    <tr>
+      <th scope="col">Id</th>
+      <th scope="col">Year</th>
+      <th scope="col">Title</th>
+    </tr>
+    </thead>
+    <tbody>
+      <tr
+        *ngIf="loading else moviesList"
+      >
+        <td colspan="3" class="text-center py-5">
+          <i class="fa-solid fa-spinner fa-spin-pulse me-3"></i> Loading...
+        </td>
+      </tr>
+      <ng-template #moviesList>
+        <ng-container *ngIf="searched">
+          <tr *ngIf="!list?.length">
+            <td colspan="3" class="py-5">
+              <div class="d-flex align-items-center justify-content-center">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <span class="ms-3">No winners found</span>
+              </div>
+            </td>
+          </tr>
+          <ng-container *ngIf="list?.length">
+            <tr *ngFor="let movie of list">
+              <td>{{movie.id}}</td>
+              <td>{{movie.year}}</td>
+              <td>{{movie.title}}</td>
+            </tr>
+          </ng-container>
+        </ng-container>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

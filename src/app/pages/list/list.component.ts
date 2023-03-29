@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
-import { HttpClient } from "@angular/common/http";
 import { ListItem } from "./list.model";
+import { HttpRequestService } from "../services/http-request.service";
 
 @Component({
   selector: 'app-list',
@@ -26,7 +26,7 @@ export class ListComponent {
   ];
 
   constructor(
-    private http: HttpClient
+    private http: HttpRequestService
   ) {
     // Get movies paginated from the API
     this.getMovies();
@@ -58,15 +58,15 @@ export class ListComponent {
     this.filtered = !!this.year;
 
     try {
-      let url = `${this.url}?page=${page}&size=${size}`;
+      let params = `?page=${page}&size=${size}`;
       if (winner) {
-        url += `&winner=${winner}`;
+        params += `&winner=${winner}`;
       }
       if (year) {
-        url += `&year=${year}`;
+        params += `&year=${year}`;
       }
 
-      const response = await this.http.get<ListItem>(url).toPromise();
+      const response = await this.http.requestAPI<ListItem>(params);
       this.list = response || { totalPages: 0 };
 
       // Create the array of pages to iterate on view

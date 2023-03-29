@@ -29,7 +29,9 @@
               >
               <ng-container *ngIf="year.length">
                 <span class="input-group-text">Enter</span>
-                <button class="btn btn-secondary" type="button" (click)="clearYearFilter()">Clear</button>
+                <button class="btn btn-secondary" type="button" (click)="clearYearFilter()">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
               </ng-container>
             </div>
           </th>
