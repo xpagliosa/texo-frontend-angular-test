@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { ListItem } from "./list.model";
-import { HttpRequestService } from "../services/http-request.service";
+import { HttpRequestService } from "../../services/http-request/http-request.service";
 
 @Component({
   selector: 'app-list',
@@ -8,14 +8,13 @@ import { HttpRequestService } from "../services/http-request.service";
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  url = "https://tools.texoit.com/backend-java/api/movies";
   list: ListItem = { totalPages: 0 };
   page = 0;
   limit = 15;
-  pages: number[] = [];
-  loading = false;
   winner: boolean | '' = '';
   year = '';
+  pages: number[] = [];
+  loading = false;
   filtered = false;
   yearError = false;
   currentYear = new Date().getFullYear();
@@ -66,6 +65,7 @@ export class ListComponent {
         params += `&year=${year}`;
       }
 
+      // Request the http service with the parameters
       const response = await this.http.requestAPI<ListItem>(params);
       this.list = response || { totalPages: 0 };
 

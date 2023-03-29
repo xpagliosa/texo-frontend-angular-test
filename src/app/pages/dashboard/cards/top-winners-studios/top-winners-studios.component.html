@@ -1,0 +1,18 @@
+<div class="card-item h-100">
+  <span class="card-title">Top 3 studios with winners</span>
+
+  <table class="table table-sm table-bordered table-striped table-hover mt-3">
+    <thead class="table-secondary">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Win Count</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let studio of list.studios | slice:0:3">
+        <td>{{studio.name}}</td>
+        <td>{{studio.winCount}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

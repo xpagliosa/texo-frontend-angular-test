@@ -1,109 +1,13 @@
 <div class="container-fluid">
   <div class="row row-cols-2 g-3">
     <div class="col">
-      <div class="card-item h-100">
-        <span class="card-title">List years with multiple winners</span>
-
-        <table class="table table-bordered table-striped table-hover mt-3">
-          <thead class="table-secondary">
-            <tr>
-              <th scope="col">Year</th>
-              <th scope="col">Win Count</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1986</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>1990</td>
-              <td>2</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <app-years-multiple-winners></app-years-multiple-winners>
     </div>
     <div class="col">
-      <div class="card-item h-100">
-        <span class="card-title">Top 3 studios with winners</span>
-
-        <table class="table table-bordered table-striped table-hover mt-3">
-          <thead class="table-secondary">
-            <tr>
-              <th scope="col">Name</th>
-              <th scope="col">Win Count</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1986</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>1990</td>
-              <td>2</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <app-top-winners-studios></app-top-winners-studios>
     </div>
     <div class="col">
-      <div class="card-item h-100">
-        <span class="card-title">Producers with longest and shortest interval between wins</span>
-
-        <h5 class="fw-normal mt-3">Maximum</h5>
-        <table class="table table-bordered table-striped table-hover">
-          <thead class="table-secondary">
-            <tr>
-              <th scope="col">Producer</th>
-              <th scope="col">Interval</th>
-              <th scope="col">Previews Year</th>
-              <th scope="col">Following Year</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1986</td>
-              <td>2</td>
-              <td>1986</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>1990</td>
-              <td>2</td>
-              <td>1986</td>
-              <td>2</td>
-            </tr>
-          </tbody>
-        </table>
-
-        <h5 class="fw-normal mt-3">Minimum</h5>
-        <table class="table table-bordered table-striped table-hover">
-          <thead class="table-secondary">
-            <tr>
-              <th scope="col">Producer</th>
-              <th scope="col">Interval</th>
-              <th scope="col">Previews Year</th>
-              <th scope="col">Following Year</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1986</td>
-              <td>2</td>
-              <td>1986</td>
-              <td>2</td>
-            </tr>
-            <tr>
-              <td>1990</td>
-              <td>2</td>
-              <td>1986</td>
-              <td>2</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <app-producers-longest-shortest></app-producers-longest-shortest>
     </div>
     <div class="col">
       <app-winners-by-year></app-winners-by-year>

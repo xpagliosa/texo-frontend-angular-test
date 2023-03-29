@@ -1,11 +1,10 @@
 import { Component } from '@angular/core';
-import { HttpRequestService } from "../../../services/http-request.service";
+import { HttpRequestService } from "../../../../services/http-request/http-request.service";
 import { Movie } from "../../../list/list.model";
 
 @Component({
   selector: 'app-winners-by-year',
-  templateUrl: './winners-by-year.component.html',
-  styleUrls: ['./winners-by-year.component.scss']
+  templateUrl: './winners-by-year.component.html'
 })
 export class WinnersByYearComponent {
   list: Movie[] = [];

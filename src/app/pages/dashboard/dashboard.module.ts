@@ -3,7 +3,10 @@ import { CommonModule } from '@angular/common';
 import { DashboardComponent } from './dashboard.component';
 import { WinnersByYearModule } from "./cards/winners-by-year/winners-by-year.module";
 import { HttpClientModule } from "@angular/common/http";
-import { HttpRequestService } from "../services/http-request.service";
+import { HttpRequestService } from "../../services/http-request/http-request.service";
+import { YearsMultipleWinnersModule } from "./cards/years-multiple-winners/years-multiple-winners.module";
+import { TopWinnersStudiosModule } from "./cards/top-winners-studios/top-winners-studios.module";
+import { ProducersLongestShortestModule } from "./cards/producers-longest-shortest/producers-longest-shortest.module";
 
 @NgModule({
   declarations: [
@@ -12,7 +15,10 @@ import { HttpRequestService } from "../services/http-request.service";
   imports: [
     CommonModule,
     WinnersByYearModule,
-    HttpClientModule
+    HttpClientModule,
+    YearsMultipleWinnersModule,
+    TopWinnersStudiosModule,
+    ProducersLongestShortestModule
   ],
   providers: [HttpRequestService]
 })
