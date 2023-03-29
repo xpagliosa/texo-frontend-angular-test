@@ -1,77 +1,114 @@
-<div class="card-item w-100 h-100">
-  <span class="card-title">List years with multiple winners</span>
+<div
+  *ngIf="loading else moviesList"
+  class="d-flex flex-grow-1 align-items-center justify-content-center"
+>
+  <i class="fa-solid fa-spinner fa-spin-pulse me-3"></i> Loading...
+</div>
+<ng-template #moviesList>
+  <div class="card-item w-100 h-100">
+    <span class="card-title">
+      List years with multiple winners
+    </span>
 
-  <table class="table table-bordered table-striped table-hover mt-3">
-    <thead class="table-secondary">
-      <tr>
-        <th scope="col">ID</th>
-        <th scope="col">Year</th>
-        <th scope="col">Title</th>
-        <th scope="col">Winner?</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>1986</td>
-        <td>2</td>
-        <td>1986</td>
-        <td>2</td>
-      </tr>
-      <tr>
-        <td>1990</td>
-        <td>2</td>
-        <td>1986</td>
-        <td>2</td>
-      </tr>
-    </tbody>
-    <tfoot class="table-secondary">
-      <tr>
-        <td colspan="4" class="py-0">
-          <div class="d-flex align-items-center justify-content-center">
-            <div
-              class="pagination-item"
-              [class.disabled]="page === 1"
-              (click)="page !== 1 ? gotoPage(1) : null"
-            >
-              <i class="fa-solid fa-backward-step"></i>
+    <table class="table table-sm table-bordered table-striped table-hover mt-3">
+      <thead class="table-secondary ">
+        <tr>
+          <th scope="col" class="align-middle text-center w-25">ID</th>
+          <th scope="col" class="align-middle text-center w-25">
+            Year
+            <div class="input-group input-group-sm">
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Filter by year"
+                aria-label="Filter by year"
+                [(ngModel)]="year"
+                (keydown.enter)="checkIsValidYear()"
+                (keydown)="onlyNumbers($event)"
+                [class.border-danger]="yearError"
+              >
+              <ng-container *ngIf="year.length">
+                <span class="input-group-text">Enter</span>
+                <button class="btn btn-secondary" type="button" (click)="clearYearFilter()">Clear</button>
+              </ng-container>
             </div>
-            <div
-              class="pagination-item"
-              [class.disabled]="page === 1"
-              (click)="page !== 1 ? gotoPage(page - 1) : null"
-            >
-              <i class="fa-solid fa-play rotate-180"></i>
+          </th>
+          <th scope="col" class="align-middle text-center w-25">Title</th>
+          <th scope="col" class="align-middle text-center w-25">
+            Winner?
+            <div class="input-group input-group-sm">
+              <select class="form-select" [(ngModel)]="winner" (ngModelChange)="getMovies(0)">
+                <option *ngFor="let option of winnerOptions" [value]="option.value">{{ option.viewValue }}</option>
+              </select>
             </div>
-
-            <ng-container
-              *ngFor="let pageNumber of pages"
-            >
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="list?.totalElements === 0">
+          <td colspan="4" class="py-5">
+            <div class="d-flex align-items-center justify-content-center">
+              <i class="fa-solid fa-magnifying-glass"></i>
+              <span class="ms-3">No movies found</span>
+            </div>
+          </td>
+        </tr>
+        <tr *ngFor="let movie of list.content">
+          <td>{{movie.id}}</td>
+          <td>{{movie.year}}</td>
+          <td>{{movie.title}}</td>
+          <td>{{movie.winner ? 'Yes' : 'No'}}</td>
+        </tr>
+      </tbody>
+      <tfoot class="table-secondary" *ngIf="list?.totalPages > 1">
+        <tr>
+          <td colspan="4" class="py-0">
+            <div class="d-flex align-items-center justify-content-center">
               <div
                 class="pagination-item"
-                [class.active]="pageNumber === page"
-                (click)="pageNumber !== page ? gotoPage(pageNumber) : null"
+                [class.disabled]="list.first"
+                (click)="!list.first ? getMovies(0) : null"
               >
-                {{ pageNumber }}
+                <i class="fa-solid fa-backward-step"></i>
               </div>
-            </ng-container>
+              <div
+                class="pagination-item"
+                [class.disabled]="list.first"
+                (click)="!list.first ? getMovies(page - 1) : null"
+              >
+                <i class="fa-solid fa-play rotate-180"></i>
+              </div>
 
-            <div
-              class="pagination-item"
-              [class.disabled]="page === totalPages"
-              (click)="page !== totalPages ? gotoPage(page + 1) : null"
-            >
-              <i class="fa-solid fa-play"></i>
+              <ng-container
+                *ngFor="let pageNumber of pages"
+              >
+                <div
+                  class="pagination-item"
+                  [class.active]="page === pageNumber - 1"
+                  (click)="!(page === pageNumber - 1) ? getMovies(pageNumber - 1) : null"
+                >
+                  {{ pageNumber }}
+                </div>
+              </ng-container>
+
+              <div
+                class="pagination-item"
+                [class.disabled]="list.last"
+                (click)="!list.last ? getMovies(page + 1) : null"
+              >
+                <i class="fa-solid fa-play"></i>
+              </div>
+              <div
+                class="pagination-item"
+                [class.disabled]="list.last"
+                (click)="!list.last ? getMovies(list.totalPages - 1) : null"
+              >
+                <i class="fa-solid fa-forward-step"></i>
+              </div>
             </div>
-            <div
-              class="pagination-item"
-              [class.disabled]="page === totalPages"
-              (click)="page !== totalPages ? gotoPage(totalPages) : null"
-            >
-              <i class="fa-solid fa-forward-step"></i>
-            </div>
-          </div>
-        </td>
-      </tr>
-    </tfoot>
-  </table>
-</div>
+          </td>
+        </tr>
+      </tfoot>
+    </table>
+  </div>
+</ng-template>

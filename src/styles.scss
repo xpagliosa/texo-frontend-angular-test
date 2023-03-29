@@ -7,6 +7,14 @@ html, body {
   font-family: "Nunito", "helvetica", sans-serif !important;
   font-weight: 400;
 
+  input,
+  input:focus,
+  input:active {
+    outline: none !important;
+    box-shadow: none !important;
+    //border-color: var(--bs-gray-400) !important;
+  }
+
   .card-item {
     box-shadow: 0 1px 3px 0 rgb(0 0 0 / 40%);
     border-radius: 4px;

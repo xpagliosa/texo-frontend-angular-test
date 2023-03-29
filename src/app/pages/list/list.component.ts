@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { HttpClient } from "@angular/common/http";
+import { ListItem } from "./list.model";
 
 @Component({
   selector: 'app-list',
@@ -6,24 +8,110 @@ import { Component } from '@angular/core';
   styleUrls: ['./list.component.scss']
 })
 export class ListComponent {
-  page = 1;
-  skip = 0;
+  url = "https://tools.texoit.com/backend-java/api/movies";
+  list: ListItem = { totalPages: 0 };
+  page = 0;
   limit = 15;
-  list = {
-    total: 50,
-    data: []
-  }
   pages: number[] = [];
-  totalPages: number;
+  loading = false;
+  winner: boolean | '' = '';
+  year = '';
+  filtered = false;
+  yearError = false;
+  currentYear = new Date().getFullYear();
+  winnerOptions = [
+    { value: '', viewValue: 'Yes/No' },
+    { value: true, viewValue: 'Yes' },
+    { value: false, viewValue: 'No' }
+  ];
 
-  constructor() {
-    this.totalPages = Math.floor(this.list.total / this.limit);
-    this.pages = Array.from(Array(this.totalPages + 1).keys()).splice(1);
-    console.log(this.pages);
+  constructor(
+    private http: HttpClient
+  ) {
+    // Get movies paginated from the API
+    this.getMovies();
   }
 
-  gotoPage(pageNumber: number) {
-    console.log(pageNumber);
-    this.page = pageNumber;
+
+  /*
+   * Get movies paginated from the API
+   * @param page: number
+   *  page number
+   * @param size: number
+   *  number of movies per page
+   * @param winner: boolean
+   *  filter by winner
+   * @param year: number
+   *  filter by year
+   */
+  async getMovies(
+    page = this.page,
+    size = this.limit,
+    winner = this.winner,
+    year = this.year
+  ) {
+    this.loading = true;
+    this.list = { totalPages: 0 };
+    this.page = page;
+    this.winner = winner;
+    this.year = year
+    this.filtered = !!this.year;
+
+    try {
+      let url = `${this.url}?page=${page}&size=${size}`;
+      if (winner) {
+        url += `&winner=${winner}`;
+      }
+      if (year) {
+        url += `&year=${year}`;
+      }
+
+      const response = await this.http.get<ListItem>(url).toPromise();
+      this.list = response || { totalPages: 0 };
+
+      // Create the array of pages to iterate on view
+      if (this.list?.totalPages > 1) {
+        this.pages = Array.from(Array(this.list.totalPages + 1).keys()).splice(1);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      this.loading = false;
+    }
+  }
+
+  /*
+   * Function to return only numbers from a string
+   */
+  onlyNumbers(event: KeyboardEvent) {
+    if(
+      event.code === 'Backspace' ||
+      event.code === 'Delete' ||
+      event.key.replace(/[^0-9]/g, '') !== ''
+    ) {
+      this.yearError = false;
+      return;
+    }
+    return false;
+  }
+
+  /*
+   * Function to clear the movies filter by year
+   */
+  async clearYearFilter() {
+    this.year = '';
+    if (this.filtered) {
+      await this.getMovies(0);
+    }
+  }
+
+  /*
+   * Function to check if the year is valid and before the current year
+   */
+  async checkIsValidYear() {
+    if (this.year.length === 4 && Number(this.year) <= this.currentYear) {
+      return this.getMovies(0, this.limit, this.winner, this.year);
+    }
+    this.yearError = true;
   }
 }
