@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ListItem } from "./list.model";
+import { ListItem } from "../../model/movie.model";
 import { HttpRequestService } from "../../services/http-request/http-request.service";
 
 @Component({
@@ -74,7 +74,7 @@ export class ListComponent {
         this.pages = Array.from(Array(this.list.totalPages + 1).keys()).splice(1);
       }
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       this.loading = false;
     }

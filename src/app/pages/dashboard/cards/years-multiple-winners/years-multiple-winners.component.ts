@@ -21,7 +21,7 @@ export class YearsMultipleWinnersComponent {
       const response = await this.http.requestAPI<Record<'years', {year: number; winnerCount: number}[]>>(this.params);
       this.list = response || {'years': []};
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }

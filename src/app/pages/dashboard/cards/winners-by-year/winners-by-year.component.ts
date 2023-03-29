@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { HttpRequestService } from "../../../../services/http-request/http-request.service";
-import { Movie } from "../../../list/list.model";
+import { Movie } from "../../../../model/movie.model";
 
 @Component({
   selector: 'app-winners-by-year',
@@ -42,7 +42,7 @@ export class WinnersByYearComponent {
       this.list = response || [];
       this.searched = true;
     } catch (error) {
-      console.log(error);
+      console.error(error);
     } finally {
       this.loading = false;
     }

@@ -21,7 +21,7 @@ export class TopWinnersStudiosComponent {
       const response = await this.http.requestAPI<Record<'studios', { name: number; winCount: number }[]>>(this.params);
       this.list = response || { 'studios': [] };
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }
 }

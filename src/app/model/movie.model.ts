@@ -7,6 +7,13 @@ export interface Movie {
   winner: boolean;
 }
 
+export interface Producer {
+  producer: string;
+  interval: number;
+  previousWin: number;
+  followingWin: number;
+}
+
 export interface Sort {
   sorted: boolean;
   unsorted: boolean;
