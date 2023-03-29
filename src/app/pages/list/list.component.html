@@ -40,7 +40,13 @@
             Winner?
             <div class="input-group input-group-sm">
               <select class="form-select" [(ngModel)]="winner" (ngModelChange)="getMovies(0)">
-                <option *ngFor="let option of winnerOptions" [value]="option.value">{{ option.viewValue }}</option>
+                <option
+                  *ngFor="let option of winnerOptions"
+                  [value]="option.value"
+                  class="text-center"
+                >
+                  {{ option.viewValue }}
+                </option>
               </select>
             </div>
           </th>

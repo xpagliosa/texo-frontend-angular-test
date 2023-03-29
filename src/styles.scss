@@ -9,10 +9,12 @@ html, body {
 
   input,
   input:focus,
-  input:active {
+  input:active,
+  select,
+  select:focus,
+  select:active {
     outline: none !important;
     box-shadow: none !important;
-    //border-color: var(--bs-gray-400) !important;
   }
 
   .card-item {

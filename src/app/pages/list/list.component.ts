@@ -19,7 +19,7 @@ export class ListComponent {
   yearError = false;
   currentYear = new Date().getFullYear();
   winnerOptions = [
-    { value: '', viewValue: 'Yes/No' },
+    { value: '', viewValue: 'Yes / No' },
     { value: true, viewValue: 'Yes' },
     { value: false, viewValue: 'No' }
   ];
