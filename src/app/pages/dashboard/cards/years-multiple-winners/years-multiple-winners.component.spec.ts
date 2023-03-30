@@ -6,7 +6,7 @@ import { HttpRequestService } from "../../../../services/http-request/http-reque
 import { By } from "@angular/platform-browser";
 import { HttpClient } from "@angular/common/http";
 
-fdescribe('YearsMultipleWinnersComponent', () => {
+describe('YearsMultipleWinnersComponent', () => {
   let component: YearsMultipleWinnersComponent;
   let fixture: ComponentFixture<YearsMultipleWinnersComponent>;
   let httpRequestService: HttpRequestService;
@@ -15,7 +15,7 @@ fdescribe('YearsMultipleWinnersComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [ YearsMultipleWinnersComponent ],
-      imports: [HttpClientTestingModule],
+      imports: [HttpClientTestingModule]
     })
     .compileComponents();
 
