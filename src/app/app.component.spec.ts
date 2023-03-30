@@ -3,7 +3,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { Component } from "@angular/core";
 
-fdescribe('AppComponent', () => {
+describe('AppComponent', () => {
   @Component({selector: 'app-navigation', template: ''})
   class NavigationStubComponent {
   }

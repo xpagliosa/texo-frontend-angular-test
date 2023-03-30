@@ -31,7 +31,6 @@ export class ListComponent {
     this.getMovies();
   }
 
-
   /*
    * Get movies paginated from the API
    * @param page: number

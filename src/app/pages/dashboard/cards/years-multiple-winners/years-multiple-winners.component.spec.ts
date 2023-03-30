@@ -58,7 +58,7 @@ describe('YearsMultipleWinnersComponent', () => {
     const columns = element.nativeElement.children[0].children;
     expect(columns.length).withContext('header with 2 columns').toEqual(2);
     expect(columns[0].textContent).withContext('column 1 with title Year').toEqual('Year');
-    expect(columns[1].textContent).withContext('column 1 with title Win Count').toEqual('Win Count');
+    expect(columns[1].textContent).withContext('column 2 with title Win Count').toEqual('Win Count');
   });
 
   it('should have a table body with specific values', () => {

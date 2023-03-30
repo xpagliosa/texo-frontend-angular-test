@@ -7,7 +7,7 @@
 <ng-template #moviesList>
   <div class="card-item w-100 h-100">
     <span class="card-title">
-      List years with multiple winners
+      List movies
     </span>
 
     <table class="table table-sm table-bordered table-striped table-hover mt-3">
@@ -28,8 +28,8 @@
                 [class.border-danger]="yearError"
               >
               <ng-container *ngIf="year.length">
-                <span class="input-group-text">Enter</span>
-                <button class="btn btn-secondary" type="button" (click)="clearYearFilter()">
+                <span id="enter-text" class="input-group-text">Enter</span>
+                <button id="btn-clear" class="btn btn-secondary" type="button" (click)="clearYearFilter()">
                   <i class="fa-solid fa-xmark"></i>
                 </button>
               </ng-container>
