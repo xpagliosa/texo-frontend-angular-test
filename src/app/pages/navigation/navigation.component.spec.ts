@@ -5,7 +5,7 @@ import { provideRouter, Router, RouterLink } from "@angular/router";
 import { DebugElement } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
-fdescribe('NavigationComponent', () => {
+describe('NavigationComponent', () => {
   let component: NavigationComponent;
   let fixture: ComponentFixture<NavigationComponent>;
   let linkDes: DebugElement[];
