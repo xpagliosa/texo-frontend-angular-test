@@ -14,12 +14,12 @@
         [class.border-danger]="yearError"
       >
       <ng-container *ngIf="year.length">
-        <button class="btn btn-secondary" type="button" (click)="clearYearFilter()">
+        <button id="btn-clear" class="btn btn-secondary" type="button" (click)="clearYearFilter()">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </ng-container>
 
-      <button class="btn btn-sm btn-primary" type="button" (click)="checkIsValidYear()">
+      <button id="btn-send" class="btn btn-sm btn-primary" type="button" (click)="checkIsValidYear()">
         <i class="fa-solid fa-magnifying-glass"></i>
       </button>
     </div>
@@ -50,7 +50,7 @@
             <td colspan="3" class="py-5">
               <div class="d-flex align-items-center justify-content-center">
                 <i class="fa-solid fa-magnifying-glass"></i>
-                <span class="ms-3">No winners found</span>
+                <span id="no-results" class="ms-3">No winners found</span>
               </div>
             </td>
           </tr>

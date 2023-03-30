@@ -34,8 +34,8 @@ describe('YearsMultipleWinnersComponent', () => {
     const spyRequest = spyOn(httpRequestService, 'requestAPI').and.callThrough();
     const spy = spyOn(http, 'get').and.callThrough();
     component.getWinners();
-    expect(spyRequest).toHaveBeenCalledWith(component.params);
-    expect(spy).toHaveBeenCalledWith(httpRequestService.url + component.params);
+    expect(spyRequest).withContext('call requestAPI() function').toHaveBeenCalledWith(component.params);
+    expect(spy).withContext('call get API').toHaveBeenCalledWith(httpRequestService.url + component.params);
   });
 
   it('should have a card', () => {
@@ -54,25 +54,25 @@ describe('YearsMultipleWinnersComponent', () => {
 
   it('should have a table header with 2 columns and specific titles', () => {
     const element = fixture.debugElement.query(By.css('thead'));
-    expect(element).toBeTruthy();
+    expect(element).withContext('table have header').toBeTruthy();
     const columns = element.nativeElement.children[0].children;
-    expect(columns.length).toEqual(2);
-    expect(columns[0].textContent).toEqual('Year');
-    expect(columns[1].textContent).toEqual('Win Count');
+    expect(columns.length).withContext('header with 2 columns').toEqual(2);
+    expect(columns[0].textContent).withContext('column 1 with title Year').toEqual('Year');
+    expect(columns[1].textContent).withContext('column 1 with title Win Count').toEqual('Win Count');
   });
 
   it('should have a table body with specific values', () => {
     const element = fixture.debugElement.query(By.css('tbody'));
-    expect(element).toBeTruthy();
+    expect(element).withContext('table have body').toBeTruthy();
     component.list.years = [
       {year: 2020, winnerCount: 1}
     ];
     fixture.detectChanges();
     const rows = element.nativeElement.children;
-    expect(rows.length).toEqual(1);
+    expect(rows.length).withContext('body with 1 row').toEqual(1);
     const row = rows[0];
-    expect(row.children.length).toEqual(2);
-    expect(row.children[0].textContent).toEqual('2020');
-    expect(row.children[1].textContent).toEqual('1');
+    expect(row.children.length).withContext('body with 2 columns').toEqual(2);
+    expect(row.children[0].textContent).withContext('column 1 with text 2020').toEqual('2020');
+    expect(row.children[1].textContent).withContext('column 2 with text 1').toEqual('1');
   });
 });

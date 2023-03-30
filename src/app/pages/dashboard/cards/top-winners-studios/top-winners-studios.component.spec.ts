@@ -6,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { By } from "@angular/platform-browser";
 
-fdescribe('TopWinnersStudiosComponent', () => {
+describe('TopWinnersStudiosComponent', () => {
   let component: TopWinnersStudiosComponent;
   let fixture: ComponentFixture<TopWinnersStudiosComponent>;
   let httpRequestService: HttpRequestService;
