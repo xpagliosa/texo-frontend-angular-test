@@ -11,7 +11,7 @@ export class ListComponent {
   list: ListItem = { totalPages: 0 };
   page = 0;
   limit = 15;
-  winner: boolean | '' = '';
+  winner: boolean | string = '';
   year = '';
   pages: number[] = [];
   loading = false;

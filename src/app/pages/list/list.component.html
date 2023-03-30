@@ -73,6 +73,7 @@
           <td colspan="4" class="py-0">
             <div class="d-flex align-items-center justify-content-center">
               <div
+                id="first"
                 class="pagination-item"
                 [class.disabled]="list.first"
                 (click)="!list.first ? getMovies(0) : null"
@@ -80,6 +81,7 @@
                 <i class="fa-solid fa-backward-step"></i>
               </div>
               <div
+                id="previous"
                 class="pagination-item"
                 [class.disabled]="list.first"
                 (click)="!list.first ? getMovies(page - 1) : null"
@@ -91,7 +93,7 @@
                 *ngFor="let pageNumber of pages"
               >
                 <div
-                  class="pagination-item"
+                  class="pagination-item page-number"
                   [class.active]="page === pageNumber - 1"
                   (click)="!(page === pageNumber - 1) ? getMovies(pageNumber - 1) : null"
                 >
@@ -100,6 +102,7 @@
               </ng-container>
 
               <div
+                id="next"
                 class="pagination-item"
                 [class.disabled]="list.last"
                 (click)="!list.last ? getMovies(page + 1) : null"
@@ -107,6 +110,7 @@
                 <i class="fa-solid fa-play"></i>
               </div>
               <div
+                id="last"
                 class="pagination-item"
                 [class.disabled]="list.last"
                 (click)="!list.last ? getMovies(list.totalPages - 1) : null"

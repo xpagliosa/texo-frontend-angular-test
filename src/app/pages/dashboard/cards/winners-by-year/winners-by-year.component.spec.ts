@@ -194,4 +194,46 @@ describe('WinnersByYearComponent', () => {
     expect(row.children[1].textContent).withContext('column 2 with value 1980').toEqual('1980');
     expect(row.children[2].textContent).withContext('column 3 with value Can\'t Stop the Music').toEqual('Can\'t Stop the Music');
   });
+
+  it('should accept only numbers on input - onlyNumbers', () => {
+    component.year = '1980';
+    fixture.detectChanges();
+    input.value = component.year;
+    const event = new KeyboardEvent("keydown",{
+      "key": "a"
+    });
+    input.dispatchEvent(event);
+    fixture.detectChanges();
+    expect(input.value).withContext('input only numbers value equal 1980').toEqual('1980');
+    expect(component.year).withContext('year value equal 1980').toEqual('1980');
+  });
+
+  it('should insert a red border on input when type an invalid year - checkIsValidYear', () => {
+    component.year = '19800';
+    fixture.detectChanges();
+    input.value = component.year;
+    const event = new KeyboardEvent("keydown",{
+      "key": "enter"
+    });
+    input.dispatchEvent(event);
+    fixture.detectChanges();
+    expect(input.value).withContext('input only numbers value equal 1980').toEqual('19800');
+    expect(component.year).withContext('year value equal 1980').toEqual('19800');
+    expect(input.classList).withContext('input with red border').toContain('border-danger');
+  });
+
+  it('should insert a red border on input when type a year in the future - checkIsValidYear', () => {
+    const oneYearFromNow = (new Date().getFullYear() + 1).toString()
+    component.year = oneYearFromNow;
+    fixture.detectChanges();
+    input.value = component.year;
+    const event = new KeyboardEvent("keydown",{
+      "key": "enter"
+    });
+    input.dispatchEvent(event);
+    fixture.detectChanges();
+    expect(input.value).withContext(`input only numbers value equal ${oneYearFromNow}`).toEqual(oneYearFromNow);
+    expect(component.year).withContext(`year value equal ${oneYearFromNow}`).toEqual(oneYearFromNow);
+    expect(input.classList).withContext('nput with red border').toContain('border-danger');
+  });
 });
