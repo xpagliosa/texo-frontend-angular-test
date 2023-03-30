@@ -15,6 +15,6 @@ export class NavigationComponent {
       title: 'List',
       route: '/list'
     }
-  ]
+  ];
 
 }

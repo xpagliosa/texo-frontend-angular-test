@@ -5,7 +5,7 @@ import { Component } from "@angular/core";
 import { By } from "@angular/platform-browser";
 
 
-fdescribe('DashboardComponent', () => {
+describe('DashboardComponent', () => {
   @Component({selector: 'app-winners-by-year', template: ''})
   class WinnersByYearStubComponent {
   }
