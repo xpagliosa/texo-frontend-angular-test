@@ -11,6 +11,10 @@ export class HttpRequestService {
     private http: HttpClient
   ) { }
 
+  /*
+   * Function to make GET requests to the API url
+   * @param params: string
+   */
   async requestAPI<T>(params: string):Promise<T | undefined> {
     return this.http.get<T>(this.url + params).toPromise();
   }
