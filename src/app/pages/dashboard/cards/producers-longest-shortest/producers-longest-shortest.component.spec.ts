@@ -6,7 +6,7 @@ import { HttpClient } from "@angular/common/http";
 import { HttpClientTestingModule } from "@angular/common/http/testing";
 import { By } from "@angular/platform-browser";
 
-fdescribe('ProducersLongestShortestComponent', () => {
+describe('ProducersLongestShortestComponent', () => {
   let component: ProducersLongestShortestComponent;
   let fixture: ComponentFixture<ProducersLongestShortestComponent>;
   let httpRequestService: HttpRequestService;

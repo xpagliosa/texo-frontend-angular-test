@@ -6,7 +6,7 @@ import { HttpRequestService } from "../../../../services/http-request/http-reque
   templateUrl: './top-winners-studios.component.html'
 })
 export class TopWinnersStudiosComponent {
-  list: Record<'studios', {name: number; winCount: number}[]> = {studios: []};
+  list: Record<'studios', {name: string; winCount: number}[]> = {studios: []};
   params = '?projection=studios-with-win-count';
 
   constructor(
@@ -18,7 +18,7 @@ export class TopWinnersStudiosComponent {
   /* Get top studios with more wins from the API */
   async getStudios() {
     try {
-      const response = await this.http.requestAPI<Record<'studios', { name: number; winCount: number }[]>>(this.params);
+      const response = await this.http.requestAPI<Record<'studios', { name: string; winCount: number }[]>>(this.params);
       this.list = response || { 'studios': [] };
     } catch (error) {
       console.error(error);
